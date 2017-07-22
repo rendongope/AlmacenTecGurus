@@ -4,13 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div style="background-color:#FAFAFA;box-shadow:10px 10px 5px 0px rgba(0,0,0,0.75)">
+    <h2 style="padding-left:30%;padding-right:30%">Almacenes</h2>
+</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
+    <tr style="background-color:#2E2E2E;color:#58ACFA">
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
