@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="07cab3dd37e94cd4bb8b1a8ee0b7cd01" Name="Diagram1">
+        <EntityTypeShape EntityType="SistemaAlmacenModel.Almacen" Width="1.5" PointX="0.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAlmacenModel.Equipo" Width="1.5" PointX="5.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAlmacenModel.Marca" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaAlmacenModel.Modelo" Width="1.5" PointX="3.125" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="SistemaAlmacenModel.FK_Equipo_Almacen" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaAlmacenModel.FK_Equipo_Marca" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaAlmacenModel.FK_Equipo_Modelo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

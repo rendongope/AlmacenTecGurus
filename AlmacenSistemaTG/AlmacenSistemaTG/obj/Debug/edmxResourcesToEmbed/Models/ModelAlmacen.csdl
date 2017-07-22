@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SistemaAlmacenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Almacen">
+    <Key>
+      <PropertyRef Name="IdAlmacen" />
+    </Key>
+    <Property Name="IdAlmacen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Clave" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Equipo" Relationship="Self.FK_Equipo_Almacen" FromRole="Almacen" ToRole="Equipo" />
+  </EntityType>
+  <EntityType Name="Equipo">
+    <Key>
+      <PropertyRef Name="IdEquipo" />
+    </Key>
+    <Property Name="IdEquipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdMarca" Type="Int32" Nullable="false" />
+    <Property Name="IdModelo" Type="Int32" Nullable="false" />
+    <Property Name="NoSerie" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Existencia" Type="Int32" />
+    <Property Name="Proveedor" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="IdAlmacen" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Almacen" Relationship="Self.FK_Equipo_Almacen" FromRole="Equipo" ToRole="Almacen" />
+    <NavigationProperty Name="Marca" Relationship="Self.FK_Equipo_Marca" FromRole="Equipo" ToRole="Marca" />
+    <NavigationProperty Name="Modelo" Relationship="Self.FK_Equipo_Modelo" FromRole="Equipo" ToRole="Modelo" />
+  </EntityType>
+  <EntityType Name="Marca">
+    <Key>
+      <PropertyRef Name="IdMarca" />
+    </Key>
+    <Property Name="IdMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Clave" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Equipo" Relationship="Self.FK_Equipo_Marca" FromRole="Marca" ToRole="Equipo" />
+  </EntityType>
+  <EntityType Name="Modelo">
+    <Key>
+      <PropertyRef Name="IdModelo" />
+    </Key>
+    <Property Name="IdModelo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Clave" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Equipo" Relationship="Self.FK_Equipo_Modelo" FromRole="Modelo" ToRole="Equipo" />
+  </EntityType>
+  <Association Name="FK_Equipo_Almacen">
+    <End Role="Almacen" Type="Self.Almacen" Multiplicity="1" />
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Almacen">
+        <PropertyRef Name="IdAlmacen" />
+      </Principal>
+      <Dependent Role="Equipo">
+        <PropertyRef Name="IdAlmacen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Equipo_Marca">
+    <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marca">
+        <PropertyRef Name="IdMarca" />
+      </Principal>
+      <Dependent Role="Equipo">
+        <PropertyRef Name="IdMarca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Equipo_Modelo">
+    <End Role="Modelo" Type="Self.Modelo" Multiplicity="1" />
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modelo">
+        <PropertyRef Name="IdModelo" />
+      </Principal>
+      <Dependent Role="Equipo">
+        <PropertyRef Name="IdModelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SistemaAlmacenEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Almacen" EntityType="Self.Almacen" />
+    <EntitySet Name="Equipo" EntityType="Self.Equipo" />
+    <EntitySet Name="Marca" EntityType="Self.Marca" />
+    <EntitySet Name="Modelo" EntityType="Self.Modelo" />
+    <AssociationSet Name="FK_Equipo_Almacen" Association="Self.FK_Equipo_Almacen">
+      <End Role="Almacen" EntitySet="Almacen" />
+      <End Role="Equipo" EntitySet="Equipo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Equipo_Marca" Association="Self.FK_Equipo_Marca">
+      <End Role="Marca" EntitySet="Marca" />
+      <End Role="Equipo" EntitySet="Equipo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Equipo_Modelo" Association="Self.FK_Equipo_Modelo">
+      <End Role="Modelo" EntitySet="Modelo" />
+      <End Role="Equipo" EntitySet="Equipo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
